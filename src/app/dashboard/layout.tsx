@@ -17,7 +17,8 @@ interface DashboardLayoutInterface {
  *
  * Отрисовывает боковую навигацию, область для дочерней страницы и input с локальным состоянием.
  * Так как это `layout.tsx`, компонент сохраняет состояние при клиентской навигации внутри сегмента
- * `/dashboard`, например между `/dashboard` и `/dashboard/settings`.
+ * `/dashboard`, например между `/dashboard`, `/dashboard/settings` и вложенными страницами
+ * пользователей.
  */
 export default function DashboardLayout({ children }: DashboardLayoutInterface) {
   const [text, setText] = useState("");
@@ -45,6 +46,9 @@ export default function DashboardLayout({ children }: DashboardLayoutInterface) 
 
           <Link href="/dashboard/settings" className="hover:text-blue-600 transition-colors">
             Настройки
+          </Link>
+          <Link href="/dashboard/user" className="hover:text-blue-600 transition-colors">
+            Users
           </Link>
         </nav>
         <div className="mt-auto pt-6 border-t border-blue-200">
