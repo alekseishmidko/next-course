@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ReactNode } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,18 +22,29 @@ export const metadata: Metadata = {
 };
 
 /**
+ * Описывает слоты корневого layout.
+ *
+ * @property children Основной route tree приложения.
+ * @property modal Parallel route `@modal`, в который Next.js помещает intercepted modal.
+ */
+interface RootLayout {
+  children: ReactNode;
+  modal: ReactNode;
+}
+
+/**
  * Корневой layout приложения.
  *
- * Подключает глобальные стили, шрифты Geist и задает общую HTML-структуру для всех маршрутов.
+ * Подключает глобальные стили, шрифты Geist, основной контент и parallel slot для модальных
+ * маршрутов.
  */
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children, modal }: Readonly<RootLayout>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        {modal}
+      </body>
     </html>
   );
 }
