@@ -2,6 +2,7 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 /**
  * Описывает свойства layout-компонента дашборда.
@@ -22,7 +23,7 @@ interface DashboardLayoutInterface {
  */
 export default function DashboardLayout({ children }: DashboardLayoutInterface) {
   const [text, setText] = useState("");
-
+  const router = useRouter();
   useEffect(() => {
     console.log("DashboardLayout mount");
 
@@ -47,9 +48,18 @@ export default function DashboardLayout({ children }: DashboardLayoutInterface) 
           <Link href="/dashboard/settings" className="hover:text-blue-600 transition-colors">
             Настройки
           </Link>
-          <Link href="/dashboard/user" className="hover:text-blue-600 transition-colors">
+          <Link href="/dashboard/error" className="hover:text-blue-600 transition-colors">
+            Error
+          </Link>
+          <Link href="/dashboard/user/test" className="hover:text-blue-600 transition-colors">
             Users
           </Link>
+          <button
+            onClick={() => router.push("/login")}
+            className="hover:text-blue-600 transition-colors"
+          >
+            Выйти
+          </button>
         </nav>
         <div className="mt-auto pt-6 border-t border-blue-200">
           <label className="block text-[10px] font-bold text-blue-400 uppercase mb-2">
