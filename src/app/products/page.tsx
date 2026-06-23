@@ -1,6 +1,12 @@
 import { cacheLife, cacheTag } from "next/cache";
 import Link from "next/link";
 
+interface ProductListItem {
+  id: number;
+  title: string;
+  price: number;
+}
+
 /**
  * Загружает список популярных товаров и кеширует результат через Cache Components.
  *
@@ -29,7 +35,75 @@ async function fetchProducts() {
 
   const data = await res.json();
 
-  return data.products;
+  return data.products as ProductListItem[];
+}
+
+/**
+ * Разрешает Next.js обрабатывать динамические параметры, которые не были сгенерированы заранее.
+ *
+ * В динамическом сегменте `[id]` это означает: если `generateStaticParams()` вернул товары с
+ * `id: "1"` и `id: "2"`, а пользователь открыл `/products/31`, Next может сгенерировать страницу
+ * по запросу вместо 404.
+ *
+ * @example
+ * export const dynamicParams = true;
+ * // /products/31 будет обработан on demand, даже если его не было в generateStaticParams().
+ */
+export const dynamicParams = true;
+
+/**
+ * Генерирует список параметров для предварительной генерации страниц (SSG).
+ *
+ * Функция вызывается Next.js во время сборки приложения.
+ * На основании возвращаемых параметров будут созданы статические страницы:
+ *
+ * Важно: эта функция обычно живет в файле динамического маршрута вроде
+ * `app/products/[id]/page.tsx`, потому что возвращает params для сегмента `[id]`.
+ *
+ * @example
+ * // Возвращаемое значение:
+ * [
+ *   { id: "1" },
+ *   { id: "2" },
+ *   { id: "3" }
+ * ]
+ *
+ * // Next использует эти params для предварительной генерации:
+ * // /products/1
+ * // /products/2
+ * // /products/3
+ *
+ * Это аналог `getStaticPaths` из Pages Router.
+ *
+ * @returns Массив параметров маршрута для генерации статических страниц.
+ */
+export async function generateStaticParams() {
+  /**
+   * Получаем список товаров из внешнего API.
+   */
+  const res = await fetch("https://dummyjson.com/products");
+
+  /**
+   * Преобразуем HTTP-ответ в JavaScript-объект.
+   */
+  const data = await res.json();
+
+  /**
+   * Преобразуем каждый товар в объект параметров маршрута.
+   *
+   * Next.js ожидает формат:
+   * [
+   *   { id: '1' },
+   *   { id: '2' },
+   *   { id: '3' }
+   * ]
+   *
+   * где id соответствует сегменту маршрута [id].
+   */
+
+  return data.products.map((product: ProductListItem) => ({
+    id: product.id.toString(),
+  }));
 }
 
 /**
@@ -46,8 +120,6 @@ export default async function ProductsPage() {
       <h2 className="text-xl font-bold text-white">Популярные товары</h2>
 
       <ul className="space-y-2">
-        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-        {/*@ts-expect-error*/}
         {products.map((product) => (
           <Link
             href={`/products/${product.id}`}

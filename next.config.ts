@@ -12,7 +12,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
-  allowedDevOrigins: ["127.0.0.1", "127.0.2.2"],
+  allowedDevOrigins: ["127.0.0.1", "127.0.2.2", "172.16.5.89"],
   cacheComponents: true,
 };
 
