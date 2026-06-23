@@ -1,37 +1,46 @@
-import Link from "next/link";
-import { CARS } from "@/shared/constants/cars";
+/**
+ * Загружает профиль организации Vercel из GitHub API без кеширования.
+ *
+ * Здесь используется `cache: "no-store"`, поэтому каждый запрос к странице заново идет во внешний
+ * API. Это противоположность `cache: "force-cache"` и Cache Components:
+ *
+ * @example
+ * // no-store:
+ * // refresh страницы -> новый запрос к GitHub API
+ *
+ * // force-cache:
+ * // refresh страницы -> Next может вернуть сохраненный ответ из кеша
+ *
+ * Такой режим полезен для данных, которые должны быть максимально свежими, но он медленнее и
+ * сильнее нагружает внешний API.
+ */
+export async function getGithubProfile() {
+  const res = await fetch("https://api.github.com/orgs/vercel", {
+    // cache: "force-cache",
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch github profile");
+  }
+
+  return res.json();
+}
 
 /**
- * Главная страница гаража.
+ * Главная страница с примером динамической server-side загрузки.
  *
- * Выводит список машин из `CARS`. Переход по карточке ведет на `/photo/[id]`; при клиентской
- * навигации этот маршрут перехватывается parallel route `@modal` и открывается как модальное окно.
+ * Так как `getGithubProfile()` использует `no-store`, эта страница не полагается на кешированный
+ * ответ GitHub API.
  */
-export default function Home() {
-  return (
-    <main className="p-10 bg-black min-h-screen">
-      <h1 className="text-3xl font-black text-white mb-10 uppercase italic">The Garage</h1>
+export default async function Home() {
+  const data = await getGithubProfile();
 
-      <div className="flex gap-4">
-        {CARS.map((car) => (
-          <Link
-            key={car.id}
-            href={`/photo/${car.id}`}
-            className="
-              p-6
-              bg-zinc-900
-              border
-              border-zinc-800
-              rounded-xl
-              text-white
-              hover:border-blue-500
-              transition-all
-            "
-          >
-            {car.name}
-          </Link>
-        ))}
-      </div>
+  return (
+    <main className="p-10 bg-black text-white min-h-screen">
+      <h2>Профиль: {data.name}</h2>
+      <p>Desc: {data.description}</p>
+      <p>Public Repos: {data.public_repos}</p>
     </main>
   );
 }
