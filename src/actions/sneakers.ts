@@ -107,3 +107,43 @@ export const createSneakerDrop = actionClient
       };
     }
   });
+
+/**
+ * Схема входных данных для переключения избранного.
+ *
+ * Action принимает только положительный числовой `id`, поэтому клиент не может отправить пустой,
+ * строковый или отрицательный идентификатор без ошибки валидации.
+ */
+const toggleFavSchema = z.object({
+  id: z.number().positive(),
+});
+
+/**
+ * Server action, которая имитирует сохранение состояния избранного.
+ *
+ * Сейчас action специально ждет 400 мс, чтобы было видно разницу между обычным ожиданием сервера и
+ * optimistic UI. Клиентская страница меняет состояние сразу через `useOptimistic`, а этот action
+ * только подтверждает или отклоняет операцию.
+ *
+ * Для `id === 2` намеренно выбрасывается ошибка, чтобы проверить сценарий отката optimistic
+ * состояния и отображение `serverError` на клиенте.
+ *
+ * @example
+ * const result = await toggleFavouriteAction({ id: 1 });
+ * // result.data?.success === true
+ *
+ * @example
+ * const result = await toggleFavouriteAction({ id: 2 });
+ * // result.serverError содержит сообщение об ошибке
+ */
+export const toggleFavouriteAction = actionClient
+  .inputSchema(toggleFavSchema)
+  .action(async ({ parsedInput }) => {
+    await new Promise((resolve) => setTimeout(resolve, 400));
+
+    if (parsedInput.id === 2) {
+      throw new Error("Не удалось обновить ");
+    }
+
+    return { success: true, productId: parsedInput.id };
+  });
