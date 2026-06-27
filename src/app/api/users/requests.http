@@ -1,0 +1,27 @@
+@host = http://localhost:3000
+
+### Create user
+POST {{host}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Alex",
+  "email": "alex@example.com"
+}
+
+### Create user with profile data
+POST {{host}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Maria",
+  "email": "maria@example.com",
+  "role": "admin",
+  "profile": {
+    "city": "Hanoi",
+    "timezone": "Asia/Ho_Chi_Minh"
+  }
+}
+
+### Get user by id
+GET {{host}}/api/users/42?fields=name,email
