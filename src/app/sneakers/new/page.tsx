@@ -15,7 +15,7 @@ import { FormButtonComponent } from "@/app/sneakers/new/components/form-button";
  */
 type FormState = {
   success: boolean;
-  productId: number | null;
+  productId: string | null;
   error: string | null;
   validationErrors: {
     title?: string[];
@@ -114,7 +114,7 @@ export default function NewDropPage() {
       if (result?.data?.success) {
         return {
           success: true,
-          productId: result.data.productId,
+          productId: result?.data?.productId ?? null,
           error: null,
           validationErrors: {},
         } satisfies FormState;

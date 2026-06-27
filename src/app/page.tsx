@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 /**
  * Загружает профиль организации Vercel из GitHub API без кеширования.
  *
@@ -28,19 +30,35 @@ export async function getGithubProfile() {
 }
 
 /**
- * Главная страница с примером динамической server-side загрузки.
+ * Блок профиля GitHub с uncached server-side загрузкой.
  *
- * Так как `getGithubProfile()` использует `no-store`, эта страница не полагается на кешированный
- * ответ GitHub API.
+ * Компонент намеренно отделен от страницы и рендерится внутри `<Suspense>`, потому что при
+ * `cacheComponents: true` uncached данные (`cache: "no-store"`) не должны блокировать весь route.
  */
-export default async function Home() {
+async function GithubProfile() {
   const data = await getGithubProfile();
 
   return (
-    <main className="p-10 bg-black text-white min-h-screen">
+    <section>
       <h2>Профиль: {data.name}</h2>
       <p>Desc: {data.description}</p>
       <p>Public Repos: {data.public_repos}</p>
+    </section>
+  );
+}
+
+/**
+ * Главная страница с примером динамической server-side загрузки.
+ *
+ * Страница отдает статический shell сразу, а динамический блок GitHub профиля догружается внутри
+ * Suspense boundary. Это устраняет ошибку Next.js `blocking-route` для uncached data.
+ */
+export default function Home() {
+  return (
+    <main className="p-10 bg-black text-white min-h-screen">
+      <Suspense fallback={<p className="text-zinc-400">Загрузка профиля...</p>}>
+        <GithubProfile />
+      </Suspense>
     </main>
   );
 }
