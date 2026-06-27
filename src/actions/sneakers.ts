@@ -2,6 +2,8 @@
 
 import { z } from "zod";
 import { actionClient } from "@/shared/lib/safe-action";
+import { db } from "@/shared/lib/db/db";
+import { products } from "@/db/schema";
 
 /**
  * Схема входных данных для создания sneaker drop.
@@ -50,55 +52,40 @@ const createSneakerSchema = z.object({
  * Server action для создания нового товара в категории `mens-shoes`.
  *
  * Action объявлен в файле с директивой `"use server"`, поэтому выполняется только на сервере.
- * Клиент вызывает его через `useAction(createSneakerDrop)`, но реальный `fetch` к dummyjson и
- * обработка ошибок происходят в серверной среде.
+ * Клиент отправляет форму через `useActionState`, но запись в PostgreSQL выполняется в серверной
+ * среде через Drizzle ORM.
  *
  * Поток выполнения:
  * 1. `inputSchema(createSneakerSchema)` валидирует входные данные.
- * 2. Если данные валидны, action отправляет POST-запрос во внешний API.
- * 3. При успешном ответе возвращается `{ success: true, data }`.
- * 4. При ошибке возвращается `{ success: false, error }`, чтобы UI мог показать сообщение.
+ * 2. Если данные валидны, action вставляет товар в таблицу `products`.
+ * 3. Цена переводится в целое число через `Math.round(price * 100)`, чтобы хранить деньги в
+ *    минимальных единицах и избегать проблем с floating point.
+ * 4. При успешной вставке возвращается `{ success: true, productId }`.
+ * 5. При ошибке возвращается `{ success: false, error }`, чтобы UI мог показать сообщение.
  *
  * @example
- * // Клиентский компонент:
- * const { execute } = useAction(createSneakerDrop);
- * execute({ title: "Aztrack", price: 123, stock: 12 });
+ * // Данные формы:
+ * { title: "Aztrack", price: 123.45, stock: 12 }
+ *
+ * // Запись в БД:
+ * { name: "Aztrack", price: 12345, stock: 12 }
  */
 export const createSneakerDrop = actionClient
   .inputSchema(createSneakerSchema)
-  .action(async ({ clientInput: payload }) => {
-    console.log("Payload: ", payload);
-
+  .action(async ({ parsedInput }) => {
     try {
-      /**
-       * Отправляем данные на сервер.
-       */
-      const res = await fetch("https://dummyjson.com/products/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...payload,
-          category: "mens-shoes",
-        }),
-      });
-
-      /**
-       * Проверяем успешность ответа.
-       */
-      if (!res.ok) {
-        throw new Error("Не удалось создать товар");
-      }
-
-      /**
-       * Получаем созданный объект товара.
-       */
-      const data = await res.json();
+      const [newProduct] = await db
+        .insert(products)
+        .values({
+          name: parsedInput.title,
+          price: Math.round(parsedInput.price * 100),
+          stock: parsedInput.stock,
+        })
+        .returning();
 
       return {
         success: true,
-        productId: data.id,
+        productId: newProduct.id,
       };
     } catch (error: unknown) {
       return {

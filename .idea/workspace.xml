@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eaa2bd39-ed07-4cc3-8925-c31e82bea7a3" name="Changes" comment="рассмотрена работа с БД и дриззл">
-      <change beforePath="$PROJECT_DIR$/drizzle/meta/_journal.json" beforeDir="false" afterPath="$PROJECT_DIR$/drizzle/meta/_journal.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema.ts" afterDir="false" />
+    <list default="true" id="eaa2bd39-ed07-4cc3-8925-c31e82bea7a3" name="Changes" comment="рассмотрены запросы к БД внутри компонентов">
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,23 +93,7 @@
       <recent name="$PROJECT_DIR$/src/app/dashboard" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="configurationStatuses">
-      <map>
-        <entry key="HttpClient.HttpRequestRunConfigurationType">
-          <value>
-            <map>
-              <entry key="requests | Create user" value="STOPPED" />
-            </map>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="RunManager" selected="npm.db:studio">
-    <configuration name="requests | Create user" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/src/app/api/users/requests.http" executionIdentifier="Create user" runType="Run single request">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="npm.dev">
     <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
       <method v="2" />
     </configuration>
@@ -156,13 +139,23 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.dev" />
         <item itemvalue="npm.db:studio" />
         <item itemvalue="npm.db:migrate" />
         <item itemvalue="npm.db:generate" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="HTTP Request.requests | Create user" />
       </list>
     </recent_temporary>
   </component>
@@ -190,7 +183,7 @@
       <workItem from="1782332677512" duration="3097000" />
       <workItem from="1782410448085" duration="3423000" />
       <workItem from="1782481337641" duration="4000" />
-      <workItem from="1782546972174" duration="6228000" />
+      <workItem from="1782546972174" duration="11831000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -288,7 +281,23 @@
       <option name="project" value="LOCAL" />
       <updated>1782550081417</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="рассмотрены связи между таблицами">
+      <option name="closed" value="true" />
+      <created>1782568028989</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1782568028989</updated>
+    </task>
+    <task id="LOCAL-00014" summary="рассмотрены запросы к БД внутри компонентов">
+      <option name="closed" value="true" />
+      <created>1782580827287</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1782580827287</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,6 +339,8 @@
     <MESSAGE value="рассмотрен optimistic update" />
     <MESSAGE value="рассмотрен route handlers" />
     <MESSAGE value="рассмотрена работа с БД и дриззл" />
-    <option name="LAST_COMMIT_MESSAGE" value="рассмотрена работа с БД и дриззл" />
+    <MESSAGE value="рассмотрены связи между таблицами" />
+    <MESSAGE value="рассмотрены запросы к БД внутри компонентов" />
+    <option name="LAST_COMMIT_MESSAGE" value="рассмотрены запросы к БД внутри компонентов" />
   </component>
 </project>
