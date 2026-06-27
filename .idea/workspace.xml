@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eaa2bd39-ed07-4cc3-8925-c31e82bea7a3" name="Changes" comment="базовый роутинг и структура приложения, обработка ошибок">
-      <change afterPath="$PROJECT_DIR$/src/app/projects/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/projects/project-library.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/components/sidebar/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/next-course.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/dashboard/error/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dashboard/error/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/dashboard/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dashboard/layout.tsx" afterDir="false" />
+    <list default="true" id="eaa2bd39-ed07-4cc3-8925-c31e82bea7a3" name="Changes" comment="рассмотрен route handlers">
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/drizzle.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/db/schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_21_06_2026__19_21__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,19 +19,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="37" />
+    <option name="cachedIndexableFilesCount" value="78" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="parallel-intercept-routing" />
+        <entry key="$PROJECT_DIR$" value="route-handlers" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,6 +64,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "HTTP Request.requests | Create user.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -73,7 +73,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "use-router",
+    "git-widget-placeholder": "db",
     "javascript.preferred.runtime.type.id": "node",
     "js.debugger.nextJs.config.created.client": "true",
     "last_opened_file_path": "/Users/alexeishmidko/webstorm/next-course",
@@ -83,7 +83,11 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "npm.build.executor": "Run",
+    "npm.db:generate.executor": "Run",
+    "npm.db:migrate.executor": "Run",
+    "npm.db:studio.executor": "Run",
     "npm.dev.executor": "Run",
+    "npm.format.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/Users/alexeishmidko/webstorm/next-course/node_modules/prettier",
     "settings.editor.selected.configurable": "settings.javascript.prettier",
     "ts.external.directory.path": "/Users/alexeishmidko/webstorm/next-course/node_modules/typescript/lib",
@@ -95,25 +99,63 @@
       <recent name="$PROJECT_DIR$/src/app/dashboard" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunDashboard">
+    <option name="configurationStatuses">
+      <map>
+        <entry key="HttpClient.HttpRequestRunConfigurationType">
+          <value>
+            <map>
+              <entry key="requests | Create user" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.db:studio">
+    <configuration name="requests | Create user" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/src/app/api/users/requests.http" executionIdentifier="Create user" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
       <method v="2" />
     </configuration>
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="db:generate" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="build" />
+        <script value="db:generate" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="db:migrate" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="dev" />
+        <script value="db:migrate" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="db:studio" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="db:studio" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -121,8 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
-        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.db:studio" />
+        <item itemvalue="npm.db:migrate" />
+        <item itemvalue="npm.db:generate" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="HTTP Request.requests | Create user" />
       </list>
     </recent_temporary>
   </component>
@@ -144,6 +189,13 @@
       <workItem from="1781787434725" duration="8695000" />
       <workItem from="1781854434230" duration="1000" />
       <workItem from="1781894221528" duration="3012000" />
+      <workItem from="1782137477732" duration="3787000" />
+      <workItem from="1782223456275" duration="9506000" />
+      <workItem from="1782313324425" duration="4275000" />
+      <workItem from="1782332677512" duration="3097000" />
+      <workItem from="1782410448085" duration="3423000" />
+      <workItem from="1782481337641" duration="4000" />
+      <workItem from="1782546972174" duration="2934000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -161,7 +213,71 @@
       <option name="project" value="LOCAL" />
       <updated>1781846211453</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="использование хуков useParams, useSearchParams, useRouter">
+      <option name="closed" value="true" />
+      <created>1782049517560</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1782049517560</updated>
+    </task>
+    <task id="LOCAL-00004" summary="использование хуков useParams, useSearchParams, useRouter">
+      <option name="closed" value="true" />
+      <created>1782049576644</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1782049576644</updated>
+    </task>
+    <task id="LOCAL-00005" summary="рассмотрена граница между клиентом и сервером">
+      <option name="closed" value="true" />
+      <created>1782145214850</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1782145214850</updated>
+    </task>
+    <task id="LOCAL-00006" summary="рассмотрено кеширование">
+      <option name="closed" value="true" />
+      <created>1782231407536</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1782231407536</updated>
+    </task>
+    <task id="LOCAL-00007" summary="рассмотрена валидация, next-safe-action + zod: безопасные экшены, server-action">
+      <option name="closed" value="true" />
+      <created>1782241009346</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1782241009346</updated>
+    </task>
+    <task id="LOCAL-00008" summary="рассмотрена работа с формами">
+      <option name="closed" value="true" />
+      <created>1782331325671</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1782331325671</updated>
+    </task>
+    <task id="LOCAL-00009" summary="рассмотрен optimistic update">
+      <option name="closed" value="true" />
+      <created>1782334786484</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1782334786484</updated>
+    </task>
+    <task id="LOCAL-00010" summary="рассмотрен route handlers">
+      <option name="closed" value="true" />
+      <created>1782413179576</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1782413179576</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +311,13 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="init" />
     <MESSAGE value="базовый роутинг и структура приложения, обработка ошибок" />
-    <option name="LAST_COMMIT_MESSAGE" value="базовый роутинг и структура приложения, обработка ошибок" />
+    <MESSAGE value="использование хуков useParams, useSearchParams, useRouter" />
+    <MESSAGE value="рассмотрена граница между клиентом и сервером" />
+    <MESSAGE value="рассмотрено кеширование" />
+    <MESSAGE value="рассмотрена валидация, next-safe-action + zod: безопасные экшены, server-action" />
+    <MESSAGE value="рассмотрена работа с формами" />
+    <MESSAGE value="рассмотрен optimistic update" />
+    <MESSAGE value="рассмотрен route handlers" />
+    <option name="LAST_COMMIT_MESSAGE" value="рассмотрен route handlers" />
   </component>
 </project>

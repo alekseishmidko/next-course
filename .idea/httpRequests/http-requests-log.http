@@ -1,0 +1,16 @@
+POST http://localhost:3000/api/users
+Content-Type: application/json
+Content-Length: 51
+User-Agent: IntelliJ HTTP Client/WebStorm 2026.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "name": "Alex",
+  "email": "alex@example.com"
+}
+
+<> 2026-06-26T012642.201.json
+
+###
+
