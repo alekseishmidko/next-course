@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
+import { headers } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,8 +38,21 @@ interface RootLayout {
  *
  * Подключает глобальные стили, шрифты Geist, основной контент и parallel slot для модальных
  * маршрутов.
+ *
+ * Дополнительно читает заголовок `x-pathname`, который прокидывается из `proxy.ts`. Это пример
+ * передачи данных из proxy/middleware-слоя в server component через request headers.
+ *
+ * @example
+ * // proxy.ts:
+ * requestHeaders.set("x-pathname", request.nextUrl.pathname);
+ *
+ * // layout.tsx:
+ * const pathname = (await headers()).get("x-pathname");
  */
-export default function RootLayout({ children, modal }: Readonly<RootLayout>) {
+export default async function RootLayout({ children, modal }: Readonly<RootLayout>) {
+  const headersStore = await headers();
+  const pathname = headersStore.get("x-pathname") ?? "";
+  console.log(`pathname: `, pathname);
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">

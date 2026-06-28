@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaa2bd39-ed07-4cc3-8925-c31e82bea7a3" name="Changes" comment="рассмотрены запросы к БД внутри компонентов">
-      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/store/legacy/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/store/modern/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/proxy.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="route-handlers" />
+        <entry key="$PROJECT_DIR$" value="db" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,7 +70,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "db",
+    "git-widget-placeholder": "proxy",
     "javascript.preferred.runtime.type.id": "node",
     "js.debugger.nextJs.config.created.client": "true",
     "last_opened_file_path": "/Users/alexeishmidko/webstorm/next-course",
@@ -183,7 +186,7 @@
       <workItem from="1782332677512" duration="3097000" />
       <workItem from="1782410448085" duration="3423000" />
       <workItem from="1782481337641" duration="4000" />
-      <workItem from="1782546972174" duration="11831000" />
+      <workItem from="1782546972174" duration="17715000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -297,7 +300,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782580827287</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="рассмотрены запросы к БД внутри компонентов">
+      <option name="closed" value="true" />
+      <created>1782580953528</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1782580953528</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
