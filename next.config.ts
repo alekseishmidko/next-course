@@ -55,11 +55,11 @@ const nextConfig: NextConfig = {
      * Все изображения внутри /assets/avatars
      * смогут использоваться через next/image.
      */
-    localPatterns: [
-      {
-        pathname: "/assets/avatars/**",
-      },
-    ],
+    // localPatterns: [
+    //   {
+    //     pathname: "/assets/avatars/**",
+    //   },
+    // ],
 
     /**
      * Список внешних ресурсов,
