@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eaa2bd39-ed07-4cc3-8925-c31e82bea7a3" name="Changes" comment="рассмотрена работа с изображениями и шрифтами">
-      <change afterPath="$PROJECT_DIR$/src/app/catalog/[category]/[slug]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/robots.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/sitemap.tsx" afterDir="false" />
+    <list default="true" id="eaa2bd39-ed07-4cc3-8925-c31e82bea7a3" name="Changes" comment="рассмотрена работа с seo">
+      <change afterPath="$PROJECT_DIR$/src/app/manifest.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/dashboard/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dashboard/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/sitemap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/sitemap.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,13 +17,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="85" />
+    <option name="cachedIndexableFilesCount" value="88" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -198,7 +196,8 @@
       <workItem from="1782410448085" duration="3423000" />
       <workItem from="1782481337641" duration="4000" />
       <workItem from="1782546972174" duration="24382000" />
-      <workItem from="1782751736919" duration="2225000" />
+      <workItem from="1782751736919" duration="2841000" />
+      <workItem from="1782831476063" duration="1160000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -336,7 +335,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782668726287</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="рассмотрена работа с seo">
+      <option name="closed" value="true" />
+      <created>1782753976729</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1782753976729</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -382,6 +389,7 @@
     <MESSAGE value="рассмотрены запросы к БД внутри компонентов" />
     <MESSAGE value="рассмотрено проксирование запросов , proxy (middleware)" />
     <MESSAGE value="рассмотрена работа с изображениями и шрифтами" />
-    <option name="LAST_COMMIT_MESSAGE" value="рассмотрена работа с изображениями и шрифтами" />
+    <MESSAGE value="рассмотрена работа с seo" />
+    <option name="LAST_COMMIT_MESSAGE" value="рассмотрена работа с seo" />
   </component>
 </project>
